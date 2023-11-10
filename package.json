@@ -1,0 +1,19 @@
+{
+  "name": "js-course",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SoleksandrS/node-js-course.git"
+  },
+  "author": "SoleksandrS",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SoleksandrS/node-js-course/issues"
+  },
+  "homepage": "https://github.com/SoleksandrS/node-js-course#readme"
+}
