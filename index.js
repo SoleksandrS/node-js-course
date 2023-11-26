@@ -11,6 +11,21 @@ app.get('/', (req, res) => {
   res.send('response for GET request');
 });
 
+app.get('/products', (req, res) => {
+  const { name, brand } = req.query;
+
+  let filteredProducts = [...products];
+
+  if (name) {
+    filteredProducts = filteredProducts.filter((obj) => obj.name === name);
+  }
+  if (brand) {
+    filteredProducts = filteredProducts.filter((obj) => obj.brand === brand);
+  }
+
+  res.json(filteredProducts);
+});
+
 app.get('/products/:id', (req, res) => {
   const { id } = req.params;
 
