@@ -11,10 +11,13 @@ app.get('/', (req, res) => {
   res.send('response for GET request');
 });
 
-app.get('/products/:brand', (req, res) => {
-  const { brand } = req.params;
-  const filteredProducts = products.filter(product => product.brand === brand);
-  res.json(filteredProducts);
+app.get('/products/:id', (req, res) => {
+  const { id } = req.params;
+
+  const product = products.find((obj) => `${obj.id}` === id);
+
+  if (product) res.json(product);
+  else res.send('Not found product');
 });
 
 app.listen(3000, () => {
