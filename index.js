@@ -1,40 +1,15 @@
 const express = require('express');
+const { logRequest } = require('./middleware');
+const { errorResponder } = require('./error.middleware');
+const productRoutes = require('./product.routes');
+
 const app = express();
+const PORT = 3000;
 
-const products = [
-  { id: 1, name: 'Product 1', brand: 'Brand A' },
-  { id: 2, name: 'Product 2', brand: 'Brand B' },
-  { id: 3, name: 'Product 3', brand: 'Brand A' }
-];
+app.use(logRequest);
+app.use(productRoutes);
+app.use(errorResponder);
 
-app.get('/', (req, res) => {
-  res.send('response for GET request');
-});
-
-app.get('/products', (req, res) => {
-  const { name, brand } = req.query;
-
-  let filteredProducts = [...products];
-
-  if (name) {
-    filteredProducts = filteredProducts.filter((obj) => obj.name === name);
-  }
-  if (brand) {
-    filteredProducts = filteredProducts.filter((obj) => obj.brand === brand);
-  }
-
-  res.json(filteredProducts);
-});
-
-app.get('/products/:id', (req, res) => {
-  const { id } = req.params;
-
-  const product = products.find((obj) => `${obj.id}` === id);
-
-  if (product) res.json(product);
-  else res.send('Not found product');
-});
-
-app.listen(3000, () => {
-  console.log('Server listening on port http://localhost:3000/');
-});
+app.listen(PORT, () => {
+  console.log(`Server listening at http://localhost:${PORT}`);
+})
